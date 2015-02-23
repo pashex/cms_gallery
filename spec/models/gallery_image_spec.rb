@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'support/imageable'
 
-RSpec.describe Gallery, :type => :model do
-  it { should have_many(:gallery_images) }
+RSpec.describe GalleryImage, :type => :model do
+  it { should belong_to(:gallery) }
 
   it_should_behave_like "imageable"
 end
