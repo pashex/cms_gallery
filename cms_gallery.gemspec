@@ -18,6 +18,10 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.1.6"
+  s.add_dependency 'pg'
+  s.add_dependency 'carrierwave'
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rspec-rails", "~> 3.1.0"
+  s.add_development_dependency "factory_girl_rails"
 end
+
