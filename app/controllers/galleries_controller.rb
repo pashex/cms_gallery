@@ -30,7 +30,7 @@ class GalleriesController < ApplicationController
   end
 
   def add_images
-    if gallery_params[:images]
+    if params[:gallery] && gallery_params[:images]
       gallery_params[:images].each do |image|
         @gallery.gallery_images.create(image: image)
       end
