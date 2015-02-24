@@ -21,7 +21,7 @@ class Admin::GalleryImagesController < ApplicationController
   def destroy
     @gallery_image.destroy
     flash[:notice] = I18n.t('gallery_image.destroyed')
-    redirect_to controller: :galleries, action: :show, id: @gallery_image.gallery_id
+    redirect_to admin_gallery_url(@gallery_image.gallery)
   end
 
   private
@@ -47,7 +47,7 @@ class Admin::GalleryImagesController < ApplicationController
     @gallery_image.attributes = gallery_image_params
     if @gallery_image.save
       flash[:notice] = get_message(template)
-      redirect_to controller: :galleries, action: :show, id: @gallery_image.gallery_id
+      redirect_to admin_gallery_url(@gallery_image.gallery)
     else
       render template
     end

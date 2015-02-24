@@ -35,7 +35,7 @@ class Admin::GalleriesController < ApplicationController
         @gallery.gallery_images.create(image: image)
       end
     end
-    redirect_to action: :show, id: @gallery.id
+    redirect_to admin_gallery_url(@gallery)
   end
 
   private

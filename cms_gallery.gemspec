@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml-rails'
   s.add_dependency 'simple_form'
   s.add_dependency 'bootstrap-sass'
+  s.add_dependency 'friendly_id', '~> 5.1.0'
 
   s.add_development_dependency "rspec-rails", "~> 3.1.0"
   s.add_development_dependency "factory_girl_rails"
