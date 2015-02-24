@@ -1,4 +1,4 @@
-class GalleryImagesController < ApplicationController
+class Admin::GalleryImagesController < ApplicationController
   before_action :load_gallery_image
 
   def show

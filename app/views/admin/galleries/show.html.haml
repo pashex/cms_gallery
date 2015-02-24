@@ -20,11 +20,11 @@
         %td= gallery_image.name
         %td= gallery_image.alt
         %td= gallery_image.description
-        %td= link_to "Show", gallery_image
-        %td= link_to "Edit", edit_gallery_image_path(gallery_image)
-        %td= link_to "Delete", gallery_image, data: { confirm: t('delete_confirm') }, method: :delete
+        %td= link_to "Show", ["admin", gallery_image]
+        %td= link_to "Edit", edit_admin_gallery_image_path(gallery_image)
+        %td= link_to "Delete", ["admin", gallery_image], data: { confirm: t('delete_confirm') }, method: :delete
 
-= simple_form_for @gallery, url: add_images_gallery_path(@gallery), method: :put, html: { multipart: true } do |f|
+= simple_form_for @gallery, url: add_images_admin_gallery_path(@gallery), method: :put, html: { multipart: true } do |f|
   = f.input :images, as: :file, input_html: { multiple: true, class: "btn" }
   = f.button :submit, "Add images", class: "btn btn-default"
-= link_to "Add one image", new_gallery_gallery_image_path(@gallery), class: "btn btn-default"
+= link_to "Add one image", new_admin_gallery_gallery_image_path(@gallery), class: "btn btn-default"

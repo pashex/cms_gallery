@@ -15,7 +15,7 @@
         %td= gallery.name
         %td= gallery.slug
         %td= gallery.description
-        %td= link_to "Show", gallery
-        %td= link_to "Edit", edit_gallery_path(gallery)
-        %td= link_to "Delete", gallery, data: { confirm: t("delete_confirm") }, method: :delete
-= link_to "Add New Gallery", new_gallery_path, class: "btn btn-default"
+        %td= link_to "Show", admin_gallery_path(gallery)
+        %td= link_to "Edit", edit_admin_gallery_path(gallery)
+        %td= link_to "Delete", admin_gallery_path(gallery), data: { confirm: t("delete_confirm") }, method: :delete
+= link_to "Add New Gallery", new_admin_gallery_path, class: "btn btn-default"

@@ -1,4 +1,4 @@
-= simple_form_for @gallery, html: { multipart: true } do |f|
+= simple_form_for ["admin", @gallery], html: { multipart: true } do |f|
   = f.input :name
   = f.input :slug
   = f.input :description, input_html: { rows: 5 }

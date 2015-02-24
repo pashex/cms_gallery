@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GalleriesController, :type => :controller do
+RSpec.describe Admin::GalleriesController, :type => :controller do
   render_views
   
   let!(:first_gallery) { create :gallery }
@@ -61,7 +61,7 @@ RSpec.describe GalleriesController, :type => :controller do
   describe '#create' do
     it "should create new gallery" do
       post :create, gallery: { name: 'new gallery' }
-      expect(response).to redirect_to(:galleries)
+      expect(response).to redirect_to admin_galleries_url
       expect(Gallery.last.name).to eq('new gallery')
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe GalleriesController, :type => :controller do
     context "when gallery exists" do
       it "should update gallery" do
         patch :update, id: second_gallery.id, gallery: { name: 'new gallery' }
-        expect(response).to redirect_to(:galleries)
+        expect(response).to redirect_to admin_galleries_url
         expect(second_gallery.reload.name).to eq('new gallery')
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe GalleriesController, :type => :controller do
     context "when gallery exists" do
       it "should destroy gallery with images" do
         delete :destroy, id: second_gallery.id
-        expect(response).to redirect_to(:galleries)
+        expect(response).to redirect_to admin_galleries_url
         expect{ second_gallery.reload }.to raise_error(ActiveRecord::RecordNotFound)
         expect{ first_image.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
@@ -107,7 +107,7 @@ RSpec.describe GalleriesController, :type => :controller do
     it "should create several images in gallery" do
       expect { put :add_images, id: first_gallery.id, gallery: { images: [@file, @file] } }.to change { first_gallery.gallery_images.count }.by(2)
       
-      expect(response).to redirect_to first_gallery
+      expect(response).to redirect_to admin_gallery_url(first_gallery)
       expect(first_gallery.gallery_images.last(2).map {|gi| gi.image_url}).to match [/tux.png/, /tux.png/]
     end
   end

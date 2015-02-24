@@ -1,4 +1,4 @@
-class GalleriesController < ApplicationController
+class Admin::GalleriesController < ApplicationController
   before_action :load_gallery, except: [:index]
 
   def index
