@@ -1,0 +1,6 @@
+en:
+  gallery:
+    created: 'Gallery created'
+    updated: 'Gallery updated'
+    destroyed: 'Gallery destroyed'
+
