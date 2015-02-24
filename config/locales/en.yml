@@ -1,4 +1,5 @@
 en:
+  delete_confirm: "Are you sure to delete it?"
   gallery:
     created: 'Gallery created'
     updated: 'Gallery updated'

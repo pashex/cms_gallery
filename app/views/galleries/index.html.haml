@@ -1,13 +1,21 @@
 %table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th Image
+      %th Name
+      %th Slug
+      %th Description
+      %th
+      %th
+      %th
   %tbody
     - @galleries.each do |gallery|
       %tr[gallery]
         %td= image_tag gallery.image_url(:thumb)
-        %td= link_to gallery.name, gallery
+        %td= gallery.name
         %td= gallery.slug
         %td= gallery.description
-        %td 
-          = link_to "Edit", edit_gallery_path(gallery)
-        %td
-          = link_to "Delete", gallery, confirm: t("delete_confirm"), method: :delete
-= link_to "Add", new_gallery_path, class: "btn btn-primary"
+        %td= link_to "Show", gallery
+        %td= link_to "Edit", edit_gallery_path(gallery)
+        %td= link_to "Delete", gallery, data: { confirm: t("delete_confirm") }, method: :delete
+= link_to "Add New Gallery", new_gallery_path, class: "btn btn-default"

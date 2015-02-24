@@ -7,11 +7,11 @@ require "cms_gallery/version"
 Gem::Specification.new do |s|
   s.name        = "cms_gallery"
   s.version     = CmsGallery::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of CmsGallery."
-  s.description = "TODO: Description of CmsGallery."
+  s.authors     = ["Pavel Golenkov"]
+  s.email       = ["p.golenkov@gmail.com"]
+  s.homepage    = "https://github.com/pashex/cms_gallery"
+  s.summary     = "Summary of CmsGallery."
+  s.description = "Description of CmsGallery."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
