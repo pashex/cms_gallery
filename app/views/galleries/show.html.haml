@@ -2,3 +2,22 @@
 = @gallery.slug
 = image_tag @gallery.image_url(:medium)
 = @gallery.description
+
+%table.table.table-bordered.table-hover
+  %tbody
+    - @gallery_images.each do |gallery_image|
+      %tr[gallery_image]
+        %td= image_tag gallery_image.image_url(:thumb)
+        %td= link_to gallery_image.name, gallery_image
+        %td= gallery_image.alt
+        %td= gallery_image.description
+        %td 
+          = link_to "Edit", edit_gallery_image_path(gallery_image)
+        %td
+          = link_to "Delete", gallery_image, confirm: t("delete_confirm"), method: :delete
+= link_to "Add one image", new_gallery_gallery_image_path(@gallery), class: "btn btn-primary"
+
+= simple_form_for @gallery, html: { multipart: true } do |f|
+  = f.input :images, as: :file, input_html: { multiple: true }
+  = f.button :submit, "Add images", class: "btn btn-primary"
+

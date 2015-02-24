@@ -6,6 +6,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
+    @gallery_images = @gallery.gallery_images
   end
   
   def new
@@ -28,6 +29,15 @@ class GalleriesController < ApplicationController
     redirect_to action: :index
   end
 
+  def add_images
+    if gallery_params[:images]
+      gallery_params[:images].each do |image|
+        @gallery.gallery_images.create(image: image)
+      end
+    end
+    redirect_to action: :show, id: @gallery.id
+  end
+
   private
 
   def gallery
@@ -36,7 +46,7 @@ class GalleriesController < ApplicationController
   alias_method :load_gallery, :gallery
   
   def gallery_params
-    params.require(:gallery).permit(:name, :slug, :description, :image, :image_cache)
+    params.require(:gallery).permit(:name, :slug, :description, :image, :image_cache, images: [])
   end
 
   def save_gallery(template)

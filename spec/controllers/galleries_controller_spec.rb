@@ -4,7 +4,10 @@ RSpec.describe GalleriesController, :type => :controller do
   render_views
   
   let!(:first_gallery) { create :gallery }
-  let!(:second_gallery) { create :gallery } 
+  let!(:second_gallery) { create :gallery }
+
+  let!(:first_image) { create :gallery_image, gallery: second_gallery }
+  let!(:second_image) { create :gallery_image, gallery: second_gallery }
 
   describe '#index' do
     it "should return list of galleries" do
@@ -16,10 +19,11 @@ RSpec.describe GalleriesController, :type => :controller do
 
   describe '#show' do
     context "when gallery exists" do
-      it "should return gallery" do
+      it "should return gallery with images" do
         get :show, id: second_gallery.id
         expect(response).to render_template("show")
         expect(assigns(:gallery)).to eq(second_gallery)
+        expect(assigns(:gallery_images).sort).to eq([first_image, second_image].sort)
       end
     end
     
@@ -80,10 +84,11 @@ RSpec.describe GalleriesController, :type => :controller do
   
   describe '#destroy' do
     context "when gallery exists" do
-      it "should destroy gallery" do
+      it "should destroy gallery with images" do
         delete :destroy, id: second_gallery.id
         expect(response).to redirect_to(:galleries)
         expect{ second_gallery.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect{ first_image.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
     
@@ -91,6 +96,19 @@ RSpec.describe GalleriesController, :type => :controller do
       it "should raise not found exception" do
         expect{ delete :destroy, id: 0 }.to raise_error(ActiveRecord::RecordNotFound)
       end
+    end
+  end
+  
+  describe '#add_images' do
+    before do
+      @file = Rack::Test::UploadedFile.new('spec/files/tux.png')
+    end
+
+    it "should create several images in gallery" do
+      expect { put :add_images, id: first_gallery.id, gallery: { images: [@file, @file] } }.to change { first_gallery.gallery_images.count }.by(2)
+      
+      expect(response).to redirect_to first_gallery
+      expect(first_gallery.gallery_images.last(2).map {|gi| gi.image_url}).to match [/tux.png/, /tux.png/]
     end
   end
 

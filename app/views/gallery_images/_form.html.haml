@@ -1,0 +1,9 @@
+= simple_form_for [@gallery, @gallery_image], html: { multipart: true } do |f|
+  = f.input :name
+  = f.input :alt
+  = f.input :description, input_html: { rows: 5 }
+  %div
+    = image_tag @gallery_image.image if @gallery_image.image?
+  = f.input :image, as: :file
+  = f.input :image_cache, as: :hidden
+  = f.button :submit, class: "btn btn-primary"
