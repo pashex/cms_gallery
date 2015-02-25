@@ -22,4 +22,9 @@ class GalleryImageUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
+  def default_url
+    'cms_gallery/' + [version_name, 'missing.gif'].compact.join('_')
+  end
+
 end

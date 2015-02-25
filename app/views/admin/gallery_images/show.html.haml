@@ -1,4 +1,4 @@
-= @gallery_image.name
-= @gallery_image.alt
-= image_tag @gallery_image.image_url(:medium)
-= @gallery_image.description
+%h1= @gallery_image.name
+%div
+  = image_tag @gallery_image.image_url(:medium), alt: @gallery_image.alt, title: @gallery_image.description
+= link_to "<- Back to gallery", admin_gallery_path(@gallery_image.gallery), class: 'btn btn-default'

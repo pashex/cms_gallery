@@ -26,5 +26,6 @@
 
 = simple_form_for @gallery, url: add_images_admin_gallery_path(@gallery), method: :put, html: { multipart: true } do |f|
   = f.input :images, as: :file, input_html: { multiple: true, class: "btn" }
-  = f.button :submit, "Add images", class: "btn btn-default"
-= link_to "Add one image", new_admin_gallery_gallery_image_path(@gallery), class: "btn btn-default"
+  = f.button :submit, "Add images", class: "btn btn-primary"
+  = link_to "Add one image", new_admin_gallery_gallery_image_path(@gallery), class: "btn btn-primary"
+= link_to "<- Back to gallery list", admin_galleries_path, class: 'btn btn-default'

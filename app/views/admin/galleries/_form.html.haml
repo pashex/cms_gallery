@@ -5,4 +5,4 @@
   = f.input :image, as: :file
   %div= image_tag(@gallery.image_url(:thumb)) if @gallery.image?
   = f.input :image_cache, as: :hidden
-  = f.button :submit, class: "btn btn-default"
+  = f.button :submit, class: "btn btn-primary"
